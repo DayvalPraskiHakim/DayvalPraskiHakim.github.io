@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trade Policy Uncertainty &amp; Export Volatility — D. P. Hakim</title>
+<meta name="description" content="VECM-GARCH analysis of how US trade policy uncertainty affects Indonesian export levels and volatility.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topstrip">
+  <span>FIELD LOG — QUANTITATIVE RESEARCH</span>
+  <span class="mid">SURABAYA, ID · 07°15'S 112°44'E</span>
+  <span id="clock">—</span>
+</div>
+
+<nav>
+  <div class="nav-mark"><a href="index.html">HAKIM, D.P.</a></div>
+  <div class="nav-links">
+    <a href="index.html#about">01 — About</a>
+    <a href="index.html#research">02 — Research</a>
+    <a href="index.html#method">03 — Method</a>
+    <a href="index.html#contact">04 — Contact</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Academic Projects</a>
+  <span class="sep">/</span>
+  <span>Export Volatility</span>
+</div>
+
+<div class="pd-hero">
+  <div class="pd-tags">
+    <span>VECM-GARCH</span>
+    <span>Trade Policy Uncertainty</span>
+    <span>Indonesia</span>
+  </div>
+  <h1 class="pd-title">Trade Policy Uncertainty and Export Volatility</h1>
+  <p class="pd-abstract">A long-run and volatility-side look at how <em>US trade policy uncertainty</em> feeds into Indonesian exports — both the level effect on export volumes and the persistence of the volatility it creates.</p>
+
+  <div class="pd-meta">
+    <div>
+      <div class="k">Method</div>
+      <div class="v">VECM-GARCH</div>
+    </div>
+    <div>
+      <div class="k">Sample</div>
+      <div class="v">128 monthly observations</div>
+    </div>
+    <div>
+      <div class="k">Driver</div>
+      <div class="v">US Trade Policy Uncertainty</div>
+    </div>
+    <div>
+      <div class="k">Toolchain</div>
+      <div class="v">R</div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="pd-block" style="margin-top:56px;">
+    <h3>Key results</h3>
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <div class="num">β = −51.93</div>
+        <div class="lbl">Long-run effect of a one-unit rise in US policy uncertainty on Indonesian exports</div>
+        <div class="flag-note">p &lt; 0.001</div>
+      </div>
+      <div class="stat-cell">
+        <div class="num">1.68%</div>
+        <div class="lbl">Monthly error-correction speed back toward the long-run equilibrium</div>
+      </div>
+      <div class="stat-cell">
+        <div class="num">α+β = 0.94</div>
+        <div class="lbl">Near-IGARCH volatility persistence in export series</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pd-block">
+    <h3>The question</h3>
+    <p>Policy uncertainty is usually treated as a level shock — it lowers trade, then trade recovers. This project asks two separate questions: how large is the long-run level effect on Indonesian exports, and does the uncertainty itself leave a lasting mark on export volatility, independent of the level effect.</p>
+  </div>
+
+  <div class="pd-block">
+    <h3>Methodology</h3>
+    <p>A Vector Error Correction Model captures the long-run cointegrating relationship between US trade policy uncertainty and Indonesian export volumes across 128 monthly observations, with a GARCH specification layered on the residuals to characterize volatility persistence separately from the level relationship. Impulse response functions trace how long a given uncertainty shock takes to work through the system.</p>
+  </div>
+
+  <div class="pd-block">
+    <h3>Findings</h3>
+    <p>A one-unit rise in US policy uncertainty reduces Indonesian exports by roughly 52 units in the long run, with the effect persisting through 8 or more periods according to the impulse response analysis. The error-correction term is slow — about 1.68% of the deviation closes per month — meaning the system takes a long time to return to equilibrium after a shock. On the volatility side, the sum of the GARCH parameters sits close to the unit-root (IGARCH) boundary, indicating that policy uncertainty shocks create a volatility regime that doesn't quickly normalize — a "sticky" risk climate rather than a transient spike.</p>
+  </div>
+
+  <div class="pd-nav-footer">
+    <a href="fx-volatility.html">← Continuous-Time FX Volatility</a>
+    <a href="geo-contagion.html">Next: Macroeconomic Shocks & Digital Lending →</a>
+  </div>
+</div>
+
+<footer class="wrap">
+  <span>© 2026 Dayval Praski Hakim</span>
+  <span>Academic Project</span>
+</footer>
+
+<script>
+  function tick(){
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2,'0');
+    const mm = String(now.getMinutes()).padStart(2,'0');
+    document.getElementById('clock').textContent = `WIB ${hh}:${mm}`;
+  }
+  tick(); setInterval(tick, 1000*30);
+</script>
+
+</body>
+</html>

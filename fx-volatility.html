@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Continuous-Time FX Volatility Modeling — D. P. Hakim</title>
+<meta name="description" content="An Ornstein-Uhlenbeck SDE model of ASEAN-5 currency sensitivity to US monetary shocks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topstrip">
+  <span>FIELD LOG — QUANTITATIVE RESEARCH</span>
+  <span class="mid">SURABAYA, ID · 07°15'S 112°44'E</span>
+  <span id="clock">—</span>
+</div>
+
+<nav>
+  <div class="nav-mark"><a href="index.html">HAKIM, D.P.</a></div>
+  <div class="nav-links">
+    <a href="index.html#about">01 — About</a>
+    <a href="index.html#research">02 — Research</a>
+    <a href="index.html#method">03 — Method</a>
+    <a href="index.html#contact">04 — Contact</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Academic Projects</a>
+  <span class="sep">/</span>
+  <span>FX Volatility</span>
+</div>
+
+<div class="pd-hero">
+  <div class="pd-tags">
+    <span>Ornstein–Uhlenbeck SDE</span>
+    <span>ASEAN-5</span>
+    <span>Bounded MLE</span>
+  </div>
+  <h1 class="pd-title">Continuous-Time FX Volatility Modeling</h1>
+  <p class="pd-abstract">An extended Ornstein-Uhlenbeck stochastic differential equation for ASEAN-5 exchange rates, with the <em>US 10-year yield</em> built in as an exogenous drift component — ranking each currency by how directly it responds to US monetary shocks.</p>
+
+  <div class="pd-meta">
+    <div>
+      <div class="k">Method</div>
+      <div class="v">Extended OU SDE / Bounded MLE</div>
+    </div>
+    <div>
+      <div class="k">Currencies</div>
+      <div class="v">IDR · THB · SGD · MYR · PHP</div>
+    </div>
+    <div>
+      <div class="k">Driver</div>
+      <div class="v">US 10-Year Treasury Yield</div>
+    </div>
+    <div>
+      <div class="k">Toolchain</div>
+      <div class="v">R</div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="pd-block" style="margin-top:56px;">
+    <h3>Key results</h3>
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <div class="num">IDR</div>
+        <div class="lbl">Highest exposure to US monetary shocks — β = 0.019, σ = 0.047</div>
+      </div>
+      <div class="stat-cell">
+        <div class="num">4×</div>
+        <div class="lbl">IDR volatility relative to SGD (σ = 0.003), the least sensitive ASEAN-5 currency</div>
+      </div>
+      <div class="stat-cell">
+        <div class="num">5</div>
+        <div class="lbl">ASEAN currencies ranked by sensitivity to US 10-year yield moves</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pd-block">
+    <h3>The question</h3>
+    <p>When US yields move, ASEAN currencies don't all react the same way or at the same speed. This project builds a continuous-time model that separates each currency's baseline mean-reverting dynamics from its specific sensitivity to US monetary policy, then ranks the five currencies on that sensitivity.</p>
+  </div>
+
+  <div class="pd-block">
+    <h3>Methodology</h3>
+    <p>The standard Ornstein-Uhlenbeck process — mean-reverting, continuous-time — is extended with the US 10-year Treasury yield entering the drift term as an exogenous driver. Parameters are estimated via bounded maximum likelihood across all five ASEAN-5 currencies (IDR, THB, SGD, MYR, PHP), with the bounds enforcing economically sensible mean-reversion speeds and volatility levels rather than letting the optimizer wander into degenerate regions.</p>
+  </div>
+
+  <div class="pd-block">
+    <h3>Findings</h3>
+    <p>The Indonesian rupiah shows the highest exposure to US monetary shocks of the five currencies (β = 0.019, σ = 0.047) — more than four times as volatile as the Singapore dollar (σ = 0.003), which sits at the other end of the ranking. That spread has direct implications for regional carry trade positioning and capital flow risk: IDR-denominated exposure carries meaningfully more US-driven risk than SGD-denominated exposure, even within the same regional bloc.</p>
+  </div>
+
+  <div class="pd-nav-footer">
+    <a href="digital-trade.html">← Digital Trade & Geopolitical Regime Divergence</a>
+    <a href="export-volatility.html">Next: Trade Policy Uncertainty & Export Volatility →</a>
+  </div>
+</div>
+
+<footer class="wrap">
+  <span>© 2026 Dayval Praski Hakim</span>
+  <span>Academic Project</span>
+</footer>
+
+<script>
+  function tick(){
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2,'0');
+    const mm = String(now.getMinutes()).padStart(2,'0');
+    document.getElementById('clock').textContent = `WIB ${hh}:${mm}`;
+  }
+  tick(); setInterval(tick, 1000*30);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geopolitical Risk Transmission &amp; Capital Flight — D. P. Hakim</title>
+<meta name="description" content="A self-exciting Hawkes process framework for geopolitical risk transmission and capital flight in EMDE currencies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topstrip">
+  <span>FIELD LOG — QUANTITATIVE RESEARCH</span>
+  <span class="mid">SURABAYA, ID · 07°15'S 112°44'E</span>
+  <span id="clock">—</span>
+</div>
+
+<nav>
+  <div class="nav-mark"><a href="index.html">HAKIM, D.P.</a></div>
+  <div class="nav-links">
+    <a href="index.html#about">01 — About</a>
+    <a href="index.html#research">02 — Research</a>
+    <a href="index.html#method">03 — Method</a>
+    <a href="index.html#contact">04 — Contact</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Research Log</a>
+  <span class="sep">/</span>
+  <span>Entry 01</span>
+</div>
+
+<div class="pd-hero">
+  <div class="pd-tags">
+    <span>Hawkes Processes</span>
+    <span>EMDE FX</span>
+    <span>Contagion</span>
+    <span>Bounded MLE</span>
+  </div>
+  <h1 class="pd-title">Geopolitical Risk Transmission and Capital Flight in EMDE Currencies: A Hawkes Process Approach</h1>
+  <p class="pd-abstract">A self-exciting jump-diffusion framework for how geopolitical shocks trigger cascading capital flight across emerging-market and developing-economy currencies. The central result is a <em>bifurcation</em>: past a critical excitation threshold, contagion stops behaving like a one-off jump and starts behaving like a self-sustaining chain of events, one shock quietly setting off the next.</p>
+
+  <div class="pd-meta">
+    <div>
+      <div class="k">Status</div>
+      <div class="v">Pre-submission</div>
+    </div>
+    <div>
+      <div class="k">Target</div>
+      <div class="v">Q1 Journal Submission</div>
+    </div>
+    <div>
+      <div class="k">Method</div>
+      <div class="v">Hawkes Process / Bounded MLE</div>
+    </div>
+    <div>
+      <div class="k">Toolchain</div>
+      <div class="v">R</div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="pd-status-banner" style="margin-top:56px;">
+    <div class="txt">Currently in final revision — bibliography construction, figure regeneration, and referee-facing clarifications on jump-magnitude classification.</div>
+    <div class="status-tag">Pre-submission</div>
+  </div>
+
+  <div class="pd-block">
+    <h3>The question</h3>
+    <p>Capital flight from emerging markets is usually modeled as a reaction to a single shock. That misses something important: geopolitical stress tends to arrive in clusters, and each event changes the probability of the next one. This paper treats currency crashes as a self-exciting point process, where a jump doesn't just move the exchange rate — it temporarily raises the intensity of future jumps.</p>
+    <p>The goal is to identify when that self-excitation crosses a threshold and contagion becomes self-sustaining, independent of any further external shock — a structural bifurcation point rather than a matter of degree.</p>
+  </div>
+
+  <div class="pd-block">
+    <h3>Key findings</h3>
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <div class="num">CLP</div>
+        <div class="lbl">Leading liquid proxy currency, replacing MXN after correction</div>
+      </div>
+      <div class="stat-cell">
+        <div class="num">↑</div>
+        <div class="lbl">Wald statistic on the core bifurcation result, substantially strengthened post-correction</div>
+      </div>
+      <div class="stat-cell">
+        <div class="num">ZAR / IDR</div>
+        <div class="lbl">Lost individual significance under the corrected, stationarity-enforced specification</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pd-block">
+    <h3>Methodology</h3>
+    <p>Currency crash classification is disentangled from tail direction and scrubbed for FOMC and NFP announcement windows to isolate geopolitical from monetary-policy-driven jumps — orthogonalizing the process along what the paper refers to internally as Path B. The excitation parameter is reparametrized and bounded to guarantee stationarity of the fitted process, rather than checking stationarity post hoc.</p>
+    <ul>
+      <li>Self-exciting Hawkes process fit via bounded maximum likelihood, with the self-excitation parameter constrained to enforce stationarity by construction</li>
+      <li>Crash classification separated from tail direction to avoid conflating one- and two-tailed events</li>
+      <li>FOMC and NFP announcement windows scrubbed to isolate geopolitical from monetary-policy shocks</li>
+      <li>Five robustness tables recomputed under the corrected specification</li>
+    </ul>
+  </div>
+
+  <div class="pd-block">
+    <h3>Remaining before submission</h3>
+    <ul>
+      <li>Bibliography construction and citation key reconciliation</li>
+      <li>Figure 2 regeneration under the corrected pipeline</li>
+      <li>Referee-facing responses on jump-magnitude abstraction and ex-ante typology classification</li>
+    </ul>
+  </div>
+
+  <div class="pd-nav-footer">
+    <a href="index.html#research">← Back to Research Log</a>
+    <a href="main-project-b.html">Next: Adjusted Net Savings & the Hartwick Rule →</a>
+  </div>
+</div>
+
+<footer class="wrap">
+  <span>© 2026 Dayval Praski Hakim</span>
+  <span>Entry 01 / 03</span>
+</footer>
+
+<script>
+  function tick(){
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2,'0');
+    const mm = String(now.getMinutes()).padStart(2,'0');
+    document.getElementById('clock').textContent = `WIB ${hh}:${mm}`;
+  }
+  tick(); setInterval(tick, 1000*30);
+</script>
+
+</body>
+</html>

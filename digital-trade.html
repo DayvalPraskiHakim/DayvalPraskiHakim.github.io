@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Trade &amp; Geopolitical Regime Divergence — D. P. Hakim</title>
+<meta name="description" content="PPMLHDFE gravity estimation on how digital regulatory divergence and data localization affect bilateral trade flows.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topstrip">
+  <span>FIELD LOG — QUANTITATIVE RESEARCH</span>
+  <span class="mid">SURABAYA, ID · 07°15'S 112°44'E</span>
+  <span id="clock">—</span>
+</div>
+
+<nav>
+  <div class="nav-mark"><a href="index.html">HAKIM, D.P.</a></div>
+  <div class="nav-links">
+    <a href="index.html#about">01 — About</a>
+    <a href="index.html#research">02 — Research</a>
+    <a href="index.html#method">03 — Method</a>
+    <a href="index.html#contact">04 — Contact</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Academic Projects</a>
+  <span class="sep">/</span>
+  <span>Digital Trade</span>
+</div>
+
+<div class="pd-hero">
+  <div class="pd-tags">
+    <span>PPMLHDFE</span>
+    <span>Bilateral Trade</span>
+    <span>Data Governance</span>
+  </div>
+  <h1 class="pd-title">Digital Trade and Geopolitical Regime Divergence</h1>
+  <p class="pd-abstract">A gravity-model test of whether <em>digital regulatory divergence</em> — specifically, government-imposed data localization — acts as a structural barrier to bilateral trade, independent of the usual gravity factors like distance, size, and shared borders.</p>
+
+  <div class="pd-meta">
+    <div>
+      <div class="k">Method</div>
+      <div class="v">PPMLHDFE</div>
+    </div>
+    <div>
+      <div class="k">Sample</div>
+      <div class="v">6,960 bilateral pairs</div>
+    </div>
+    <div>
+      <div class="k">Fixed Effects</div>
+      <div class="v">Exporter-Year / Importer-Year / Pair</div>
+    </div>
+    <div>
+      <div class="k">Toolchain</div>
+      <div class="v">R</div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="pd-block" style="margin-top:56px;">
+    <h3>Key results</h3>
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <div class="num">β = −0.34</div>
+        <div class="lbl">Effect of data localization on bilateral trade flows</div>
+        <div class="flag-note">p &lt; 0.05</div>
+      </div>
+      <div class="stat-cell">
+        <div class="num">0.98</div>
+        <div class="lbl">Pseudo R², robust to pair fixed effects</div>
+      </div>
+      <div class="stat-cell">
+        <div class="num">6,960</div>
+        <div class="lbl">Bilateral trade observations in the estimation sample</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pd-block">
+    <h3>The question</h3>
+    <p>Gravity models explain most of bilateral trade with distance, GDP, and shared history. This project asks what's left over once those are controlled for — specifically, whether a country's stance on cross-border data flows and government-imposed data localization requirements independently suppresses trade with its partners.</p>
+  </div>
+
+  <div class="pd-block">
+    <h3>Methodology</h3>
+    <p>Estimated via Pseudo-Poisson Maximum Likelihood with high-dimensional fixed effects (PPMLHDFE) — the standard for gravity estimation with zero trade flows and heteroskedastic errors. Exporter-year, importer-year, and pair fixed effects absorb multilateral resistance terms and any time-invariant bilateral factors, isolating the coefficient on digital regulatory divergence from confounding gravity effects.</p>
+  </div>
+
+  <div class="pd-block">
+    <h3>Finding</h3>
+    <p>Government-imposed data localization significantly reduces bilateral trade flows, and the effect survives the pair fixed-effects specification — meaning it isn't just proxying for some unobserved, time-invariant feature of the country pair. That points to restrictive data governance as a structural barrier to digital trade in its own right, not just a symptom of broader regulatory distance.</p>
+  </div>
+
+  <div class="pd-nav-footer">
+    <a href="index.html#method">← Back to homepage</a>
+    <a href="fx-volatility.html">Next: Continuous-Time FX Volatility →</a>
+  </div>
+</div>
+
+<footer class="wrap">
+  <span>© 2026 Dayval Praski Hakim</span>
+  <span>Academic Project</span>
+</footer>
+
+<script>
+  function tick(){
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2,'0');
+    const mm = String(now.getMinutes()).padStart(2,'0');
+    document.getElementById('clock').textContent = `WIB ${hh}:${mm}`;
+  }
+  tick(); setInterval(tick, 1000*30);
+</script>
+
+</body>
+</html>

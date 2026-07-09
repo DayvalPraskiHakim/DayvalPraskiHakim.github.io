@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macroeconomic Shocks &amp; Digital Lending — D. P. Hakim</title>
+<meta name="description" content="A Panel Local Projections model of how macroeconomic shocks propagate into digital loan default rates.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topstrip">
+  <span>FIELD LOG — QUANTITATIVE RESEARCH</span>
+  <span class="mid">SURABAYA, ID · 07°15'S 112°44'E</span>
+  <span id="clock">—</span>
+</div>
+
+<nav>
+  <div class="nav-mark"><a href="index.html">HAKIM, D.P.</a></div>
+  <div class="nav-links">
+    <a href="index.html#about">01 — About</a>
+    <a href="index.html#research">02 — Research</a>
+    <a href="index.html#method">03 — Method</a>
+    <a href="index.html#contact">04 — Contact</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Academic Projects</a>
+  <span class="sep">/</span>
+  <span>Digital Lending</span>
+</div>
+
+<div class="pd-hero">
+  <div class="pd-tags">
+    <span>Panel Local Projections</span>
+    <span>Digital Lending</span>
+    <span>Ongoing</span>
+  </div>
+  <h1 class="pd-title">Macroeconomic Shocks and Digital Lending</h1>
+  <p class="pd-abstract">A Panel Local Projections model measuring the <em>dynamic, time-series</em> impact of macroeconomic shocks on digital loan default rates — translating econometric output into a structured risk read for regulatory and institutional use.</p>
+
+  <div class="pd-meta">
+    <div>
+      <div class="k">Status</div>
+      <div class="v">Ongoing</div>
+    </div>
+    <div>
+      <div class="k">Method</div>
+      <div class="v">Panel Local Projections</div>
+    </div>
+    <div>
+      <div class="k">Application</div>
+      <div class="v">Digital Loan Default Rates</div>
+    </div>
+    <div>
+      <div class="k">Toolchain</div>
+      <div class="v">R</div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="pd-status-banner" style="margin-top:56px;">
+    <div class="txt">Ongoing — model is engineered and running; full results are still being developed.</div>
+    <div class="status-tag">Ongoing</div>
+  </div>
+
+  <div class="pd-block">
+    <h3>The question</h3>
+    <p>Digital lending platforms sit closer to the macroeconomic cycle than traditional credit — shorter loan terms, thinner underwriting, and borrowers with less buffer against income shocks. This project asks how macroeconomic shocks actually propagate into default rates over time, rather than assuming a simple contemporaneous relationship.</p>
+  </div>
+
+  <div class="pd-block">
+    <h3>Methodology</h3>
+    <p>A Panel Local Projections framework traces the full dynamic response of digital loan default rates to a macroeconomic shock, period by period, rather than imposing the fixed lag structure a VAR would require. The panel structure pools across lending segments to gain statistical power while local projections keep the impulse-response estimation flexible at each horizon.</p>
+  </div>
+
+  <div class="pd-block">
+    <h3>Why it matters</h3>
+    <p>Understanding the dynamic path of default risk — not just its eventual level — gives regulators and lenders a usable early-warning window rather than a single static estimate. The end goal is a structured risk assessment that translates the local-projection impulse responses into something institutional risk teams can act on directly.</p>
+  </div>
+
+  <div class="pd-nav-footer">
+    <a href="export-volatility.html">← Trade Policy Uncertainty & Export Volatility</a>
+    <a href="index.html#method">Back to homepage →</a>
+  </div>
+</div>
+
+<footer class="wrap">
+  <span>© 2026 Dayval Praski Hakim</span>
+  <span>Academic Project</span>
+</footer>
+
+<script>
+  function tick(){
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2,'0');
+    const mm = String(now.getMinutes()).padStart(2,'0');
+    document.getElementById('clock').textContent = `WIB ${hh}:${mm}`;
+  }
+  tick(); setInterval(tick, 1000*30);
+</script>
+
+</body>
+</html>

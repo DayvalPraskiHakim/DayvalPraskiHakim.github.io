@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adjusted Net Savings &amp; the Hartwick Rule — D. P. Hakim</title>
+<meta name="description" content="Testing weak sustainability for Indonesia through adjusted net savings and the Hartwick Rule.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topstrip">
+  <span>FIELD LOG — QUANTITATIVE RESEARCH</span>
+  <span class="mid">SURABAYA, ID · 07°15'S 112°44'E</span>
+  <span id="clock">—</span>
+</div>
+
+<nav>
+  <div class="nav-mark"><a href="index.html">HAKIM, D.P.</a></div>
+  <div class="nav-links">
+    <a href="index.html#about">01 — About</a>
+    <a href="index.html#research">02 — Research</a>
+    <a href="index.html#method">03 — Method</a>
+    <a href="index.html#contact">04 — Contact</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Research Log</a>
+  <span class="sep">/</span>
+  <span>Entry 02</span>
+</div>
+
+<div class="pd-hero">
+  <div class="pd-tags">
+    <span>Sustainability Economics</span>
+    <span>ARDL / Panel PMG</span>
+    <span>Indonesia</span>
+  </div>
+  <h1 class="pd-title">Adjusted Net Savings and the Hartwick Rule: Evidence from Indonesia</h1>
+  <p class="pd-abstract">A test of <em>weak sustainability</em> for Indonesia through adjusted net savings (ANS) — the genuine-savings measure that nets out natural resource depletion and environmental damage from conventional national saving. If ANS stays persistently negative, an economy is, in the Hartwick Rule sense, consuming its productive base rather than maintaining it.</p>
+
+  <div class="pd-meta">
+    <div>
+      <div class="k">Status</div>
+      <div class="v">In progress</div>
+    </div>
+    <div>
+      <div class="k">Country</div>
+      <div class="v">Indonesia</div>
+    </div>
+    <div>
+      <div class="k">Framework</div>
+      <div class="v">Hartwick Rule / ANS</div>
+    </div>
+    <div>
+      <div class="k">Toolchain</div>
+      <div class="v">R</div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="pd-status-banner" style="margin-top:56px;">
+    <div class="txt">Currently at a methodological fork — choosing between a single-country time-series approach and a panel specification before the estimation stage begins in earnest.</div>
+    <div class="status-tag">In progress</div>
+  </div>
+
+  <div class="pd-block">
+    <h3>The question</h3>
+    <p>The Hartwick Rule gives a simple sustainability test: an economy can consume exhaustible resources indefinitely only if it reinvests the resource rents into other forms of capital. Adjusted net savings operationalizes that test empirically. This paper asks whether Indonesia's genuine savings trajectory is consistent with weak sustainability, and what's driving deviations from it — commodity cycles, policy shifts, or structural change in the capital base.</p>
+  </div>
+
+  <div class="pd-block">
+    <h3>Open methodological decision</h3>
+    <p>The paper is at a fork between two credible approaches, and the choice determines everything downstream — data structure, identification strategy, and how structural breaks get handled:</p>
+    <ul>
+      <li><strong style="color:var(--ink); font-family:'IBM Plex Mono', monospace; font-size:0.85rem;">Single-country route</strong> — an ARDL bounds-testing setup, with a Bai-Perron test for structural breaks and a wavelet decomposition to separate short- and long-run sustainability dynamics within Indonesia alone</li>
+      <li><strong style="color:var(--ink); font-family:'IBM Plex Mono', monospace; font-size:0.85rem;">Panel route</strong> — a Pooled Mean Group / Mean Group (PMG/MG) estimator, situating Indonesia against a comparable panel of resource-dependent economies to gain cross-sectional power</li>
+    </ul>
+    <p>The single-country route keeps the analysis tightly institutional and policy-specific; the panel route trades some of that specificity for statistical power and a comparative benchmark. That trade-off is the current decision point.</p>
+  </div>
+
+  <div class="pd-block">
+    <h3>Why it matters</h3>
+    <p>Indonesia's growth model leans heavily on resource extraction — coal, palm oil, nickel — sectors that show up as income today but as depletion on a genuine-savings ledger. A weak-sustainability reading has direct implications for how resource rents should be reinvested, and for whether current fiscal policy around the extractive sector is compatible with maintaining, rather than drawing down, the country's productive base.</p>
+  </div>
+
+  <div class="pd-nav-footer">
+    <a href="main-project-a.html">← Geopolitical Risk Transmission</a>
+    <a href="main-project-c.html">Next: Tail Risk in Energy Commodities →</a>
+  </div>
+</div>
+
+<footer class="wrap">
+  <span>© 2026 Dayval Praski Hakim</span>
+  <span>Entry 02 / 03</span>
+</footer>
+
+<script>
+  function tick(){
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2,'0');
+    const mm = String(now.getMinutes()).padStart(2,'0');
+    document.getElementById('clock').textContent = `WIB ${hh}:${mm}`;
+  }
+  tick(); setInterval(tick, 1000*30);
+</script>
+
+</body>
+</html>
