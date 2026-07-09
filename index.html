@@ -32,7 +32,7 @@
 
 <div class="hero">
   <div class="hero-main">
-    <div class="file-tag"><span class="sq"></span>Sample ID — DPH / MKT-RISK / 2026</div>
+    <div class="file-tag"><span class="sq"></span>ID — DPH / MKT-RISK / 2026</div>
     <h1 class="hero-title">BUILD, MEASURED, ITERATE.</h1>
     <p class="hero-sub">Dayval Praski Hakim. I seek to model factor, volatility and geopolitics that affecting <em>YOUR PLATE</em> </p>
     <div class="hero-fields">
@@ -81,7 +81,7 @@
       </div>
       <div class="about-body">
         <p>My work sits at the edge of econometrics and applied probability to questions that started out political or unsignificant.</p>
-        <p>That path started with a Bachelor of Social in International Relations, with a minor in Mathematics, at Universitas Airlangga. Most of what I model right now is really a question about how institutions and capital respond under pressure, just written in the language of intensity functions and volatility surfaces.</p>
+        <p>That path started with a Bachelor of Social in International Relations, with a minor in Mathematics, at Universitas Airlangga. Most of what I model right now is really a question about how commodities and capital respond under pressure.</p>
         <div class="field-tags">
           <span>DeepL</span>
           <span>SDEs</span>
@@ -154,7 +154,7 @@
       <div class="paper-id">PROJ<span class="n">01</span></div>
       <div>
         <div class="paper-title"><a href="digital-trade.html">Digital Trade and Geopolitical Regime Divergence →</a></div>
-        <p class="paper-desc">PPMLHDFE gravity estimation across 6,960 bilateral trade observations, isolating the effect of digital regulatory divergence and data localization on trade flows.</p>
+        <p class="paper-desc">PPMLHDFE gravity estimation across bilateral trade observations, isolating the effect of digital regulatory divergence and data localization on trade flows.</p>
         <div class="paper-tags">
           <span>PPMLHDFE</span>
           <span>Bilateral Trade</span>
@@ -239,8 +239,7 @@
   }
   tick(); setInterval(tick, 1000*30);
 
-  // ice-core strip: deterministic-looking banded texture built from a
-  // simple seeded generator, standing in for a volatility-regime core sample
+
   (function(){
     const svg = document.getElementById('coreSvg');
     const ns = 'http://www.w3.org/2000/svg';
@@ -261,7 +260,6 @@
       rect.setAttribute('fill',c);
       svg.appendChild(rect);
 
-      // occasional fracture line for a jump event
       if(rand() > 0.82){
         const line = document.createElementNS(ns,'line');
         line.setAttribute('x1',0); line.setAttribute('x2',w);
