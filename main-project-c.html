@@ -96,7 +96,58 @@
   <div class="pd-block">
     <h3>What we found</h3>
     <p>None of it holds up. The storm-exposure covariate was run through cross-threshold construction checks, explicit seasonal-cycle controls, and permutation/circular-shift placebo inference, across both the occurrence and severity channels and all three instruments. Every result that looked significant on a first pass — including one that initially cleared conventional significance thresholds — collapsed once tested against a randomized null or an explicit hurricane-season control.</p>
+
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <div class="num">54</div>
+        <div class="lbl">Model specifications fitted</div>
+      </div>
+      <div class="stat-cell">
+        <div class="num">2,800</div>
+        <div class="lbl">Placebo draws run</div>
+      </div>
+      <div class="stat-cell">
+        <div class="num">0</div>
+        <div class="lbl">Effects surviving the full gauntlet</div>
+        <div class="flag-note">not for lack of trying</div>
+      </div>
+    </div>
+
     <p>The leading interpretation: Gulf Coast storms don't arrive as surprises. NHC advisories and forecast cones give markets days of lead time before a storm's physical footprint — the thing this covariate measures — actually peaks. By the time exposure is high, the disruption risk is very plausibly already priced in. That reframes the null from "no effect" to "no effect left to find, because the market got there first" — a testable claim in its own right, not just an absence of one.</p>
+  </div>
+
+  <div class="pd-block">
+    <h3>The robustness gauntlet</h3>
+    <div class="method-table">
+      <div class="method-row">
+        <div class="k">Cross-threshold</div>
+        <div class="v">naive / frozen / fixed percentile thresholds compared for every commodity × channel. Sign flips under frozen_95 for both gasoline and natgas occurrence — traced to the threshold's own calibration using the storm covariate, not a real effect.</div>
+      </div>
+      <div class="method-row">
+        <div class="k">Seasonal control</div>
+        <div class="v">Adding an explicit annual-cycle term collapses natgas occurrence's apparent effect (p = .003 → .57) and, in the opposite direction, strengthens gasoline severity's (p = .081 → .032) — evidence the natgas result was seasonality, not storms.</div>
+      </div>
+      <div class="method-row">
+        <div class="k">Placebo inference</div>
+        <div class="v">2,800 permutation and circular-shift draws across both surviving candidates. Neither clears conventional significance under either method — best case p = .063 (natgas, circular shift).</div>
+      </div>
+      <div class="method-row">
+        <div class="k">Exposure sensitivity</div>
+        <div class="v">Re-estimated gasoline severity across a 3×3 grid of exposure radius (100–250km) and decay half-life (5–20d). No configuration produces a result that would be expected to survive placebo testing — same fragile pattern throughout.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pd-block">
+    <h3>Figures</h3>
+    <p>γ_storm's real estimate (red line) against 300 randomized draws per method, for the two candidates that survived to the placebo stage. Random permutation destroys the exposure series' seasonal shape entirely; circular shift preserves it and only scrambles which dates it lines up with — the gap between the two columns is itself diagnostic.</p>
+    <img src="figures/placebo_grid.png" alt="Placebo test: real gamma_storm estimate against permutation and circular-shift null distributions for natgas occurrence and gasoline severity" style="width:100%; height:auto; border:1px solid var(--rule-strong); margin-bottom:12px;">
+
+    <p>Adding an explicit seasonal-cycle term to the model pulls the two candidate effects in opposite directions — natgas occurrence collapses, gasoline severity strengthens — which is the split that motivated placebo-testing both rather than trusting either on the seasonally-controlled p-value alone.</p>
+    <img src="figures/seasonal_comparison.png" alt="Slope chart showing gamma_storm p-values before and after adding a seasonal control term" style="width:100%; height:auto; border:1px solid var(--rule-strong); margin-bottom:12px;">
+
+    <p>Gasoline severity's p-value across a grid of exposure-construction choices (radius, decay half-life). The smooth gradient — rather than a sharp, isolated sweet spot — is itself evidence against a real, well-localized effect hiding at some untried parameter setting.</p>
+    <img src="figures/radius_heatmap.png" alt="Heatmap of gasoline severity gamma_storm p-value across exposure radius and decay half-life combinations" style="width:100%; height:auto; border:1px solid var(--rule-strong);">
   </div>
 
   <div class="pd-block">
