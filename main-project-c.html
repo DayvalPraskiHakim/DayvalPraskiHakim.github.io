@@ -39,6 +39,7 @@
     <span>GAS / DCS Models</span>
     <span>Energy Futures</span>
     <span>Satellite Data</span>
+    <span>Null Result</span>
   </div>
   <h1 class="pd-title">Tail Risk in Energy Commodities: A Score-Driven Approach with Satellite Covariates</h1>
   <p class="pd-abstract">A score-driven GAS/GPD framework for tail risk in WTI crude, RBOB gasoline, and Henry Hub natural gas futures — with the twist that the time-varying parameters are pushed not just by returns, but by <em>physical</em> covariates: NASA storm-track data and satellite temperature reanalysis.</p>
@@ -46,7 +47,7 @@
   <div class="pd-meta">
     <div>
       <div class="k">Status</div>
-      <div class="v">Active pipeline</div>
+      <div class="v">Completed — null result</div>
     </div>
     <div>
       <div class="k">Instruments</div>
@@ -66,8 +67,8 @@
 <div class="wrap">
 
   <div class="pd-status-banner" style="margin-top:56px;">
-    <div class="txt">Full pipeline built end to end — futures data, storm-track exposure, and temperature covariates. Journal target still undecided.</div>
-    <div class="status-tag">Active pipeline</div>
+    <div class="txt">Full pipeline estimated end to end across all three instruments. No storm-exposure effect survives cross-threshold checks, seasonal controls, and placebo inference — currently being written up as a null result.</div>
+    <div class="status-tag">Null result (robust)</div>
   </div>
 
   <div class="pd-block">
@@ -81,20 +82,26 @@
     <ul>
       <li>Score-driven GAS/DCS dynamics for the time-varying tail and volatility parameters</li>
       <li>Generalized Pareto Distribution (GPD) tail modeling, following Massacci (2017)</li>
-      <li>NASA EONET storm-track data as an exogenous physical-exposure covariate</li>
+      <li>NASA EONET/HURDAT2 storm-track data as an exogenous physical-exposure covariate</li>
       <li>NASA POWER satellite temperature reanalysis as a demand-side covariate, with separate handling for heating- and cooling-driven anomalies</li>
-      <li>Applied across three instruments — WTI crude, RBOB gasoline, and Henry Hub natural gas futures — to compare how physical exposure channels differ by commodity</li>
+      <li>Applied separately to both the occurrence (exceedance frequency) and severity (exceedance magnitude) channels of the tail process, across WTI crude, RBOB gasoline, and Henry Hub natural gas futures</li>
     </ul>
   </div>
 
   <div class="pd-block">
     <h3>Why satellite data</h3>
-    <p>Storm and temperature data give the model a covariate that moves ahead of price in a way that's physically interpretable rather than statistically inferred — a hurricane's track is known before it fully prices into RBOB futures, and a cold anomaly is known before it fully prices into Henry Hub. That timing gap is the mechanism this paper is trying to quantify.</p>
+    <p>Storm and temperature data give the model a covariate that moves ahead of price in a way that's physically interpretable rather than statistically inferred — a hurricane's track is known before it fully prices into RBOB futures, and a cold anomaly is known before it fully prices into Henry Hub. That timing gap is the mechanism this paper set out to quantify.</p>
+  </div>
+
+  <div class="pd-block">
+    <h3>What we found</h3>
+    <p>None of it holds up. The storm-exposure covariate was run through cross-threshold construction checks, explicit seasonal-cycle controls, and permutation/circular-shift placebo inference, across both the occurrence and severity channels and all three instruments. Every result that looked significant on a first pass — including one that initially cleared conventional significance thresholds — collapsed once tested against a randomized null or an explicit hurricane-season control.</p>
+    <p>The leading interpretation: Gulf Coast storms don't arrive as surprises. NHC advisories and forecast cones give markets days of lead time before a storm's physical footprint — the thing this covariate measures — actually peaks. By the time exposure is high, the disruption risk is very plausibly already priced in. That reframes the null from "no effect" to "no effect left to find, because the market got there first" — a testable claim in its own right, not just an absence of one.</p>
   </div>
 
   <div class="pd-block">
     <h3>Status</h3>
-    <p>The data pipeline — futures returns, storm exposure indices, and temperature anomaly series — is fully built across all three instruments. Estimation and results are in progress, with the target journal still under consideration.</p>
+    <p>The data pipeline and estimation — futures returns, storm-exposure indices, and temperature-anomaly series across all three instruments — are complete. Current work is writing up the null result with the market-efficiency interpretation as the central claim; target journal still under consideration.</p>
   </div>
 
   <div class="pd-nav-footer">
