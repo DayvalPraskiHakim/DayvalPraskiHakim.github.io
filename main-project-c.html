@@ -73,12 +73,12 @@
 
   <div class="pd-block">
     <h3>The question</h3>
-    <p>Standard GARCH-family models let volatility respond to its own past, but energy markets have an unusually direct physical channel into risk: a hurricane shutting down Gulf refining capacity, or a cold snap spiking heating demand, moves the tails of the return distribution in ways that are visible in weather data before they're visible in price data. This paper asks how much of energy futures' tail risk can be explained by those physical shocks directly, rather than inferred after the fact from price moves alone.</p>
+    <p>Standard GARCH-family models let volatility respond to its own past, but energy markets have an unusually direct physical channel into risk: a hurricane shutting down Gulf refining capacity, or a cold snap spiking heating demand, moves the tails of the return distribution in ways that are visible in weather data before they're visible in price data. The questiom will asks how much of energy futures' tail risk can be explained by those physical shocks directly.</p>
   </div>
 
   <div class="pd-block">
     <h3>Methodology</h3>
-    <p>The core engine is a score-driven time-varying parameter (GAS/DCS) model in the sense of Creal, Koopman, and Lucas (2013), paired with a Generalized Pareto tail specification following Massacci's (2017, <em>Management Science</em>) approach to dynamic tail risk. Score-driven models were chosen over a second Hawkes specification specifically to diversify the methodological toolkit across the broader research agenda, rather than defaulting to the same estimator again.</p>
+    <p>The core engine is a score-driven time-varying parameter (GAS/DCS) model in the sense of Creal, Koopman, and Lucas (2013), paired with a Generalized Pareto tail specification following Massacci's (2017, <em>Management Science</em>) approach to dynamic tail risk. Score-driven models were chosen to diversify the methodological toolkit across the broader research agenda.</p>
     <ul>
       <li>Score-driven GAS/DCS dynamics for the time-varying tail and volatility parameters</li>
       <li>Generalized Pareto Distribution (GPD) tail modeling, following Massacci (2017)</li>
@@ -94,7 +94,7 @@
   </div>
 
   <div class="pd-block">
-    <h3>What we found</h3>
+    <h3>What I found</h3>
     <p>None of it holds up. The storm-exposure covariate was run through cross-threshold construction checks, explicit seasonal-cycle controls, and permutation/circular-shift placebo inference, across both the occurrence and severity channels and all three instruments. Every result that looked significant on a first pass — including one that initially cleared conventional significance thresholds — collapsed once tested against a randomized null or an explicit hurricane-season control.</p>
 
     <div class="stat-grid">
@@ -125,7 +125,7 @@
       </div>
       <div class="method-row">
         <div class="k">Seasonal control</div>
-        <div class="v">Adding an explicit annual-cycle term collapses natgas occurrence's apparent effect (p = .003 → .57) and, in the opposite direction, strengthens gasoline severity's (p = .081 → .032) — evidence the natgas result was seasonality, not storms.</div>
+        <div class="v">Adding an explicit annual-cycle term collapses natgas occurrence's apparent effect (p = .003 → .57) and, in the opposite direction, strengthens gasoline severity's (p = .081 → .032) — evidence the natgas result was seasonality and not storms.</div>
       </div>
       <div class="method-row">
         <div class="k">Placebo inference</div>
@@ -152,7 +152,7 @@
 
   <div class="pd-block">
     <h3>Status</h3>
-    <p>The data pipeline and estimation — futures returns, storm-exposure indices, and temperature-anomaly series across all three instruments — are complete. Current work is writing up the null result with the market-efficiency interpretation as the central claim; target journal still under consideration.</p>
+    <p>The data pipeline and estimation — futures returns, storm-exposure indices, and temperature-anomaly series across all three instruments — are complete. Current work is writing up the null result with the market-efficiency interpretation as the central claim.</p>
   </div>
 
   <div class="pd-nav-footer">
