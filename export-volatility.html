@@ -79,7 +79,7 @@
       </div>
       <div class="stat-cell">
         <div class="num">α+β = 0.94</div>
-        <div class="lbl">Near-IGARCH volatility persistence in export series</div>
+        <div class="lbl">Near-IGARCH volatility persistence in the export series itself</div>
       </div>
     </div>
   </div>
@@ -91,17 +91,160 @@
 
   <div class="pd-block">
     <h3>Methodology</h3>
-    <p>A Vector Error Correction Model captures the long-run cointegrating relationship between US trade policy uncertainty and Indonesian export volumes across 128 monthly observations, with a GARCH specification layered on the residuals to characterize volatility persistence separately from the level relationship. Impulse response functions trace how long a given uncertainty shock takes to work through the system.</p>
+    <p>A Vector Error Correction Model captures the long-run cointegrating relationship between US trade policy uncertainty (USPUC), the real effective exchange rate (REER), inflation, and Indonesian export volumes across 128 monthly observations, with a GARCH(1,1) specification layered on each series' residuals to characterize volatility persistence separately from the level relationship. Impulse response functions trace how long a given uncertainty shock takes to work through the system.</p>
   </div>
 
   <div class="pd-block">
     <h3>Findings</h3>
-    <p>A one-unit rise in US policy uncertainty reduces Indonesian exports by roughly 52 units in the long run, with the effect persisting through 8 or more periods according to the impulse response analysis. The error-correction term is slow — about 1.68% of the deviation closes per month — meaning the system takes a long time to return to equilibrium after a shock. On the volatility side, the sum of the GARCH parameters sits close to the unit-root (IGARCH) boundary, indicating that policy uncertainty shocks create a volatility regime that doesn't quickly normalize — a "sticky" risk climate rather than a transient spike.</p>
+    <p>A one-unit rise in US policy uncertainty reduces Indonesian exports by roughly 52 units in the long run, with the effect persisting through 8 or more periods according to the impulse response analysis. Of the four variables in the system, only exports themselves adjust significantly back toward that long-run relationship when a deviation occurs (α = −0.0168, p &lt; 0.001) — USPUC, REER, and inflation are all statistically weakly exogenous in this system, meaning exports do the equilibrating, not the other way around. The correction is slow either way: about 1.68% of a deviation closes per month.</p>
+    <p>Volatility persistence isn't uniform across the system. Export volatility itself sits close to the IGARCH (unit-root) boundary (α+β ≈ 0.94), as does inflation (≈ 0.94) — both consistent with a "sticky" risk regime that doesn't quickly normalize after a shock. REER volatility, by contrast, shows almost no persistence at all (α+β ≈ 0.06, with neither parameter individually significant) — exchange-rate volatility in this system behaves close to white noise, a genuinely different dynamic from the export and inflation series.</p>
+  </div>
+
+  <div class="pd-block">
+    <h3>Adjustment dynamics</h3>
+    <p>Error-correction (α) coefficients from the VECM — how strongly each variable responds to a deviation from the long-run cointegrating relationship. A larger, more significant magnitude means that variable does more of the work restoring equilibrium.</p>
+    <table style="width:100%; border-collapse:collapse; margin:20px 0 28px; font-family:'IBM Plex Mono', monospace; font-size:0.8rem;">
+      <thead>
+        <tr style="border-bottom:1px solid var(--rule-strong);">
+          <th style="text-align:left; padding:10px 14px 10px 0; color:var(--ink-faint); font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase;">Equation</th>
+          <th style="text-align:right; padding:10px 14px; color:var(--ink-faint); font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase;">α (ec1)</th>
+          <th style="text-align:right; padding:10px 14px; color:var(--ink-faint); font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase;">Std err</th>
+          <th style="text-align:right; padding:10px 14px; color:var(--ink-faint); font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase;">z</th>
+          <th style="text-align:right; padding:10px 0 10px 14px; color:var(--ink-faint); font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase;">p</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--rule);">
+          <td style="padding:10px 14px 10px 0; color:var(--ink);">EXP</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink);">−0.0168</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">0.004</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">−4.399</td>
+          <td style="text-align:right; padding:10px 0 10px 14px; color:var(--core-4);">&lt; 0.001</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--rule);">
+          <td style="padding:10px 14px 10px 0; color:var(--ink-dim);">USPUC</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">−0.0012</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">0.001</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">−1.494</td>
+          <td style="text-align:right; padding:10px 0 10px 14px; color:var(--ink-faint);">0.135</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--rule);">
+          <td style="padding:10px 14px 10px 0; color:var(--ink-dim);">REER</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">−4.76e-05</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">3.23e-05</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">−1.477</td>
+          <td style="text-align:right; padding:10px 0 10px 14px; color:var(--ink-faint);">0.140</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px 10px 0; color:var(--ink-dim);">Inflation</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">−2.02e-07</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">1.06e-07</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">−1.910</td>
+          <td style="text-align:right; padding:10px 0 10px 14px; color:var(--ink-faint);">0.056</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The cointegrating vector itself (long-run relationship, normalized on exports):</p>
+    <table style="width:100%; border-collapse:collapse; margin:20px 0 8px; font-family:'IBM Plex Mono', monospace; font-size:0.8rem;">
+      <thead>
+        <tr style="border-bottom:1px solid var(--rule-strong);">
+          <th style="text-align:left; padding:10px 14px 10px 0; color:var(--ink-faint); font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase;">Variable</th>
+          <th style="text-align:right; padding:10px 14px; color:var(--ink-faint); font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase;">β</th>
+          <th style="text-align:right; padding:10px 14px; color:var(--ink-faint); font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase;">Std err</th>
+          <th style="text-align:right; padding:10px 14px; color:var(--ink-faint); font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase;">z</th>
+          <th style="text-align:right; padding:10px 0 10px 14px; color:var(--ink-faint); font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase;">p</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--rule);">
+          <td style="padding:10px 14px 10px 0; color:var(--ink);">EXP (normalized)</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink);">1.0000</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-faint);">—</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-faint);">—</td>
+          <td style="text-align:right; padding:10px 0 10px 14px; color:var(--ink-faint);">—</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--rule);">
+          <td style="padding:10px 14px 10px 0; color:var(--ink-dim);">USPUC</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">51.93</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">15.33</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">3.387</td>
+          <td style="text-align:right; padding:10px 0 10px 14px; color:var(--core-4);">0.001</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--rule);">
+          <td style="padding:10px 14px 10px 0; color:var(--ink-dim);">REER</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">734.66</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">315.56</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">2.328</td>
+          <td style="text-align:right; padding:10px 0 10px 14px; color:var(--core-4);">0.020</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px 10px 0; color:var(--ink-dim);">Inflation</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">3.094e+05</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">6.10e+04</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">5.071</td>
+          <td style="text-align:right; padding:10px 0 10px 14px; color:var(--core-4);">&lt; 0.001</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pd-block">
+    <h3>Volatility persistence by series</h3>
+    <p>Univariate GARCH(1,1) fit separately on each series. α+β close to 1 means shocks to that series' volatility decay very slowly (an IGARCH-like "sticky" regime); close to 0 means volatility reverts quickly.</p>
+    <table style="width:100%; border-collapse:collapse; margin:20px 0 8px; font-family:'IBM Plex Mono', monospace; font-size:0.8rem;">
+      <thead>
+        <tr style="border-bottom:1px solid var(--rule-strong);">
+          <th style="text-align:left; padding:10px 14px 10px 0; color:var(--ink-faint); font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase;">Series</th>
+          <th style="text-align:right; padding:10px 14px; color:var(--ink-faint); font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase;">ω</th>
+          <th style="text-align:right; padding:10px 14px; color:var(--ink-faint); font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase;">α₁</th>
+          <th style="text-align:right; padding:10px 14px; color:var(--ink-faint); font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase;">β₁</th>
+          <th style="text-align:right; padding:10px 0 10px 14px; color:var(--ink-faint); font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase;">α+β</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--rule);">
+          <td style="padding:10px 14px 10px 0; color:var(--ink);">EXP</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">0.065<span style="color:var(--ink-faint);"> ns</span></td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">0.114<span style="color:var(--ink-faint);"> ns</span></td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink);">0.824<span style="color:var(--core-4);"> ***</span></td>
+          <td style="text-align:right; padding:10px 0 10px 14px; color:var(--flag);">0.938</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--rule);">
+          <td style="padding:10px 14px 10px 0; color:var(--ink);">USPUC</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink);">0.152<span style="color:var(--core-4);"> **</span></td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">0.067<span style="color:var(--ink-faint);"> ns</span></td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink);">0.785<span style="color:var(--core-4);"> ***</span></td>
+          <td style="text-align:right; padding:10px 0 10px 14px; color:var(--ink-dim);">0.852</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--rule);">
+          <td style="padding:10px 14px 10px 0; color:var(--ink);">REER</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink);">0.936<span style="color:var(--core-4);"> *</span></td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">0.019<span style="color:var(--ink-faint);"> ns</span></td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">0.044<span style="color:var(--ink-faint);"> ns</span></td>
+          <td style="text-align:right; padding:10px 0 10px 14px; color:var(--core-2);">0.063</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px 10px 0; color:var(--ink);">Inflation</td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">0.032<span style="color:var(--ink-faint);"> ns</span></td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink-dim);">0.106<span style="color:var(--ink-faint);"> ns</span></td>
+          <td style="text-align:right; padding:10px 14px; color:var(--ink);">0.833<span style="color:var(--core-4);"> ***</span></td>
+          <td style="text-align:right; padding:10px 0 10px 14px; color:var(--flag);">0.939</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-family:'IBM Plex Mono', monospace; font-size:0.66rem; color:var(--ink-faint); margin-top:4px;">*** p&lt;0.001  ** p&lt;0.01  * p&lt;0.05  ns = not significant at 5%</p>
+  </div>
+
+  <div class="pd-block">
+    <h3>Impulse responses</h3>
+    <p>Full orthogonalized IRF grid across all four series, 10-period horizon, dashed lines are 95% bounds. The USPUC→EXP panel (top row, second column) is the headline result: a policy-uncertainty shock produces a negative, slow-decaying response in exports that hasn't fully died out by period 10.</p>
+    <img src="figures/export_volatility_irf.png" alt="Impulse response function grid: EXP, USPUC, REER, and Inflation shocks and responses across a 10-period horizon" style="width:100%; max-width:520px; height:auto; display:block; margin:0 auto; border:1px solid var(--rule-strong); background:#fff; padding:8px;">
   </div>
 
   <div class="pd-nav-footer">
     <a href="fx-volatility.html">← Continuous-Time FX Volatility</a>
-    <a href="geo-contagion.html">Next: Macroeconomic Shocks & Digital Lending →</a>
+    <a href="geo-contagion.html">Next: Macroeconomic Shocks &amp; Digital Lending →</a>
   </div>
 </div>
 
