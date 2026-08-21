@@ -70,8 +70,8 @@
     <div class="stat-grid">
       <div class="stat-cell">
         <div class="num">β = −0.34</div>
-        <div class="lbl">Effect of data localization on bilateral trade flows</div>
-        <div class="flag-note">p &lt; 0.05</div>
+        <div class="lbl">Effect of market-regime divergence (US-style open market vs. China-style state-directed market) on bilateral trade flows</div>
+        <div class="flag-note">p = 0.016 (Model 2 only — see caveats below)</div>
       </div>
       <div class="stat-cell">
         <div class="num">0.98</div>
@@ -86,17 +86,74 @@
 
   <div class="pd-block">
     <h3>The question</h3>
-    <p>Gravity models explain most of bilateral trade with distance, GDP, and shared history. This project asks what's left over once those are controlled for — specifically, whether a country's stance on cross-border data flows and government-imposed data localization requirements independently suppresses trade with its partners.</p>
+    <p>Gravity models explain most of bilateral trade with distance, GDP, and shared history. This project asks what's left over once those are controlled for — testing several distinct channels of digital and geopolitical friction (data-privacy divergence, divergence in market governance model along an open/liberal-vs-state-directed spectrum anchored by the US and China as reference poles, and hardware/export-control barriers) to see which, if any, independently suppress trade once the standard gravity factors are absorbed.</p>
   </div>
 
   <div class="pd-block">
     <h3>Methodology</h3>
-    <p>Estimated via Pseudo-Poisson Maximum Likelihood with high-dimensional fixed effects (PPMLHDFE) — the standard for gravity estimation with zero trade flows and heteroskedastic errors. Exporter-year, importer-year, and pair fixed effects absorb multilateral resistance terms and any time-invariant bilateral factors, isolating the coefficient on digital regulatory divergence from confounding gravity effects.</p>
+    <p>Estimated via Pseudo-Poisson Maximum Likelihood with high-dimensional fixed effects (PPMLHDFE) — the standard for gravity estimation with zero trade flows and heteroskedastic errors. Exporter-year and importer-year fixed effects absorb multilateral resistance terms in the baseline specification (Model 1); a second specification (Model 2) adds pair fixed effects to absorb any time-invariant bilateral factors, isolating each friction variable's effect from unobserved, fixed country-pair characteristics. A third specification (Model 2b) restricts to only the friction variables with enough within-pair variation to be genuinely identified under pair fixed effects, rather than trusting the pair-FE estimate on variables that barely move within a pair.</p>
   </div>
 
   <div class="pd-block">
     <h3>Finding</h3>
-    <p>Government-imposed data localization significantly reduces bilateral trade flows, and the effect survives the pair fixed-effects specification — meaning it isn't just proxying for some unobserved, time-invariant feature of the country pair. That points to restrictive data governance as a structural barrier to digital trade in its own right, not just a symptom of broader regulatory distance.</p>
+    <p>The headline number (β = −0.34, p = 0.016) comes from <strong>market-regime divergence</strong> — how far a country's economic governance sits along a spectrum anchored by an open, market-liberal model at one end (associated with the US) and a more state-directed, closed model at the other (associated with China) — not narrowly from data localization. As constructed, this variable takes the higher of the exporter's and importer's own individual friction scores, so it's best read as "at least one side of this pair has a strict, state-directed regime," not a precise pairwise distance metric. The variable that most directly captures data-privacy/localization policy (<code>privacy_max_friction</code>) is insignificant in the baseline specification (β = 0.099, p = 0.599) and is <em>mechanically excluded</em> from the pair fixed-effects model — it's time-invariant within almost every pair in this sample, so it's perfectly collinear with the pair fixed effects and can't be estimated there at all.</p>
+    <p>Market-regime divergence's own significance rests on limited identifying variation — only about 11% of pairs switch on this variable across the sample, so the pair-FE estimate leans on a fairly thin slice of "movers." The strictest test (Model 2b), which keeps only the two variables with genuinely sufficient within-pair movement to trust (trade agreements and hardware/export-control friction), finds <em>no</em> significant effect — hardware friction lands at p = 0.453. So the accurate summary is: one friction channel (market-regime divergence) shows a significant, negative effect on trade in the pair-FE specification, but it doesn't survive the strictest identification test, and the more literally "digital trade governance" channel (privacy/localization) was never identified as significant at all.</p>
+
+    <table style="width:100%; border-collapse:collapse; margin:24px 0 8px; font-family:'IBM Plex Mono', monospace; font-size:0.78rem;">
+      <thead>
+        <tr style="border-bottom:1px solid var(--rule-strong);">
+          <th style="text-align:left; padding:10px 12px 10px 0; color:var(--ink-faint); font-size:0.6rem; letter-spacing:0.06em; text-transform:uppercase;">Coefficient</th>
+          <th style="text-align:right; padding:10px 12px; color:var(--ink-faint); font-size:0.6rem; letter-spacing:0.06em; text-transform:uppercase;">Model 1<br>Baseline</th>
+          <th style="text-align:right; padding:10px 12px; color:var(--ink-faint); font-size:0.6rem; letter-spacing:0.06em; text-transform:uppercase;">Model 2<br>Pair FE</th>
+          <th style="text-align:right; padding:10px 0 10px 12px; color:var(--ink-faint); font-size:0.6rem; letter-spacing:0.06em; text-transform:uppercase;">Model 2b<br>Dynamic only</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--rule);">
+          <td style="padding:10px 12px 10px 0; color:var(--ink);">rta</td>
+          <td style="text-align:right; padding:10px 12px; color:var(--ink-dim);">−0.006<span style="color:var(--ink-faint);"> (p=.953)</span></td>
+          <td style="text-align:right; padding:10px 12px; color:var(--ink-dim);">−0.156<span style="color:var(--ink-faint);"> (p=.267)</span></td>
+          <td style="text-align:right; padding:10px 0 10px 12px; color:var(--ink-dim);">−0.156<span style="color:var(--ink-faint);"> (p=.266)</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--rule);">
+          <td style="padding:10px 12px 10px 0; color:var(--ink);">log_dist</td>
+          <td style="text-align:right; padding:10px 12px; color:var(--ink);">−0.565<span style="color:var(--core-4);"> ***</span></td>
+          <td style="text-align:right; padding:10px 12px; color:var(--ink-faint);">absorbed by pair FE</td>
+          <td style="text-align:right; padding:10px 0 10px 12px; color:var(--ink-faint);">absorbed by pair FE</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--rule);">
+          <td style="padding:10px 12px 10px 0; color:var(--ink);">comlang_off</td>
+          <td style="text-align:right; padding:10px 12px; color:var(--ink);">0.519<span style="color:var(--core-4);"> **</span></td>
+          <td style="text-align:right; padding:10px 12px; color:var(--ink-faint);">absorbed by pair FE</td>
+          <td style="text-align:right; padding:10px 0 10px 12px; color:var(--ink-faint);">absorbed by pair FE</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--rule);">
+          <td style="padding:10px 12px 10px 0; color:var(--ink);">censor_distance</td>
+          <td style="text-align:right; padding:10px 12px; color:var(--ink-dim);">0.192<span style="color:var(--ink-faint);"> (p=.072)</span></td>
+          <td style="text-align:right; padding:10px 12px; color:var(--ink-dim);">−0.058<span style="color:var(--ink-faint);"> (p=.072)</span></td>
+          <td style="text-align:right; padding:10px 0 10px 12px; color:var(--ink-faint);">not included</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--rule);">
+          <td style="padding:10px 12px 10px 0; color:var(--ink);">privacy_max_friction</td>
+          <td style="text-align:right; padding:10px 12px; color:var(--ink-dim);">0.099<span style="color:var(--ink-faint);"> (p=.599)</span></td>
+          <td style="text-align:right; padding:10px 12px; color:var(--ink-faint);">dropped — collinear w/ pair FE</td>
+          <td style="text-align:right; padding:10px 0 10px 12px; color:var(--ink-faint);">not included</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--rule);">
+          <td style="padding:10px 12px 10px 0; color:var(--ink);">regime_max_friction</td>
+          <td style="text-align:right; padding:10px 12px; color:var(--ink-dim);">−0.417<span style="color:var(--ink-faint);"> (p=.147)</span></td>
+          <td style="text-align:right; padding:10px 12px; color:var(--flag);">−0.340<span style="color:var(--flag);"> *</span></td>
+          <td style="text-align:right; padding:10px 0 10px 12px; color:var(--ink-faint);">not included</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px 10px 0; color:var(--ink);">hardware_max_friction</td>
+          <td style="text-align:right; padding:10px 12px; color:var(--ink-dim);">−0.031<span style="color:var(--ink-faint);"> (p=.808)</span></td>
+          <td style="text-align:right; padding:10px 12px; color:var(--ink-dim);">−0.032<span style="color:var(--ink-faint);"> (p=.525)</span></td>
+          <td style="text-align:right; padding:10px 0 10px 12px; color:var(--ink-dim);">−0.038<span style="color:var(--ink-faint);"> (p=.453)</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-family:'IBM Plex Mono', monospace; font-size:0.64rem; color:var(--ink-faint); margin-top:4px;">*** p&lt;0.001  ** p&lt;0.01  * p&lt;0.05. N=6,960 across all three models. Model 2b restricts to variables with sufficient within-pair switching to be identified under pair FE (rta: 10% of pairs, 86 switchers; hardware_max_friction: 29% of pairs).</p>
   </div>
 
   <div class="pd-nav-footer">
