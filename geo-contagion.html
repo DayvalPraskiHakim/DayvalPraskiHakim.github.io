@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Macroeconomic Shocks &amp; Digital Lending — D. P. Hakim</title>
-<meta name="description" content="A Panel Local Projections model of how macroeconomic shocks propagate into digital loan default rates.">
+<title>Credit Risk & Distance-to-Default — D. P. Hakim</title>
+<meta name="description" content="A Bharath-Shumway Distance-to-Default model for IDX-listed firms, benchmarked against gradient boosting, testing whether leverage and profitability explain credit risk beyond the structural model itself.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -31,17 +31,17 @@
 <div class="breadcrumb">
   <a href="index.html">Academic Projects</a>
   <span class="sep">/</span>
-  <span>Digital Lending</span>
+  <span>Credit Risk</span>
 </div>
 
 <div class="pd-hero">
   <div class="pd-tags">
-    <span>Panel Local Projections</span>
-    <span>Digital Lending</span>
+    <span>Distance-to-Default</span>
+    <span>Credit Risk</span>
     <span>Ongoing</span>
   </div>
-  <h1 class="pd-title">Macroeconomic Shocks and Digital Lending</h1>
-  <p class="pd-abstract">A Panel Local Projections model measuring the <em>dynamic, time-series</em> impact of macroeconomic shocks on digital loan default rates — translating econometric output into a structured risk read for regulatory and institutional use.</p>
+  <h1 class="pd-title">Credit Risk and Firm Fundamentals: A Distance-to-Default Approach</h1>
+  <p class="pd-abstract">A Bharath-Shumway Distance-to-Default model for non-financial IDX-listed firms, benchmarked against a gradient-boosted machine learning model — testing whether firm leverage and profitability explain credit risk beyond what's already mechanically built into the structural model itself.</p>
 
   <div class="pd-meta">
     <div>
@@ -50,15 +50,15 @@
     </div>
     <div>
       <div class="k">Method</div>
-      <div class="v">Panel Local Projections</div>
+      <div class="v">Distance-to-Default, Panel OLS, Gradient Boosting</div>
     </div>
     <div>
       <div class="k">Application</div>
-      <div class="v">Digital Loan Default Rates</div>
+      <div class="v">Corporate Credit Risk, IDX-Listed Firms</div>
     </div>
     <div>
       <div class="k">Toolchain</div>
-      <div class="v">R</div>
+      <div class="v">Python</div>
     </div>
   </div>
 </div>
@@ -66,27 +66,93 @@
 <div class="wrap">
 
   <div class="pd-status-banner" style="margin-top:56px;">
-    <div class="txt">Ongoing — model is engineered and running; full results are still being developed.</div>
+    <div class="txt">Ongoing — empirical results finalized (baseline model, robustness checks, ML benchmark); written analysis in progress.</div>
     <div class="status-tag">Ongoing</div>
   </div>
 
   <div class="pd-block">
     <h3>The question</h3>
-    <p>Digital lending platforms sit closer to the macroeconomic cycle than traditional credit — shorter loan terms, thinner underwriting, and borrowers with less buffer against income shocks. This project asks how macroeconomic shocks actually propagate into default rates over time, rather than assuming a simple contemporaneous relationship.</p>
+    <p>The Merton/Bharath-Shumway Distance-to-Default framework prices credit risk directly from equity markets — market value, volatility, and leverage — without needing a firm's own default history. But leverage is also mechanically embedded in the DD calculation itself, which raises an obvious question: once you control for that, does anything about a firm's actual fundamentals — its profitability, its size — still explain variation in credit risk? Or is the structural model just restating its own inputs?</p>
+  </div>
+
+  <div class="pd-block">
+    <h3>Data &amp; sample</h3>
+    <p>33 non-financial firms listed on the Indonesia Stock Exchange, spanning eight sectors, 2022–2025 (132 firm-years). Banks are excluded on structural grounds — a bank's leverage ratio reflects deposit-taking, not distress, so applying Merton/Bharath-Shumway to financial institutions produces misleadingly low apparent default risk. Price and financial statement data is sourced via Yahoo Finance and assembled into a firm-year panel.</p>
+    <p>One data issue surfaced and corrected during the build: five major commodity exporters (ITMG, INCO, PGAS, ADRO, MEDC) report financial statements in USD while trading in IDR. Left uncorrected, this currency mismatch inflates DD for exactly these firms by roughly the USD/IDR exchange rate — and, before the fix, produced what looked like a genuine "commodity supercycle" signal in the Energy &amp; Mining sector. Confirmed directly via each firm's reporting-currency metadata and corrected using the historical exchange rate matched to each fiscal year-end, not a single current rate.</p>
   </div>
 
   <div class="pd-block">
     <h3>Methodology</h3>
-    <p>A Panel Local Projections framework traces the full dynamic response of digital loan default rates to a macroeconomic shock, period by period, rather than imposing the fixed lag structure a VAR would require. The panel structure pools across lending segments to gain statistical power while local projections keep the impulse-response estimation flexible at each horizon.</p>
+    <p>Distance-to-Default is computed via the Bharath-Shumway naive approximation to Merton's model, using market equity, a debt-volatility proxy, and each firm's face value of debt. The baseline regression explains DD using leverage, profitability (ROA), and firm size (log assets), with year fixed effects for common macro shocks and firm-clustered standard errors. A second specification adds sector fixed effects, since sector-level shocks (real ones — a genuine commodity cycle, not the currency artifact above) can otherwise masquerade as individual-firm outliers. A gradient-boosted model (LightGBM), evaluated via firm-grouped cross-validation to prevent a firm's own history leaking across folds, benchmarks whether a flexible model captures anything the linear specification misses.</p>
   </div>
 
   <div class="pd-block">
-    <h3>Why it matters</h3>
-    <p>Understanding the dynamic path of default risk — not just its eventual level — gives regulators and lenders a usable early-warning window rather than a single static estimate. The end goal is a structured risk assessment that translates the local-projection impulse responses into something institutional risk teams can act on directly.</p>
+    <h3>Key findings</h3>
+    <p>Leverage and profitability both explain DD robustly and correctly-signed across every specification tested — with and without sector controls, with and without outlier exclusion. Firm size does not: an initial regression showed a significant, counterintuitive negative coefficient on firm size, which fully disappeared once the currency mismatch above was corrected. That coefficient was the data error, not a real pattern — a useful reminder that a statistically significant result is not the same as a real one.</p>
+    <img src="figures/fig1_sector_dd.png" alt="Average distance-to-default by sector" style="max-width:100%;">
+    <p><em>Average DD by sector, post-correction. No sector sits as a dramatic outlier — the apparent Energy &amp; Mining "supercycle" in earlier drafts was the currency artifact, not a real effect.</em></p>
+    <img src="figures/fig4_leverage_vs_dd.png" alt="Leverage versus distance-to-default scatter, colored by sector" style="max-width:100%;">
+    <p><em>Leverage against DD across the full panel — the core relationship the regression formalizes.</em></p>
+    <img src="figures/fig3_feature_importance.png" alt="LightGBM feature importance chart" style="max-width:100%;">
+    <p><em>Gradient-boosted feature importance: profitability and leverage dominate, consistent with the linear model.</em></p>
+    <p>Out-of-sample, LightGBM essentially ties the linear baseline (RMSE 1.71 vs. 1.73) rather than beating it outright — a modest but real difference from an earlier draft where an uncorrected data issue was inflating the apparent gap between the two models. Read plainly: once the data is clean, a flexible model finds little beyond what a well-specified structural model already captures. That is itself the finding, not a null result to explain away.</p>
+    <img src="figures/fig2_dd_distribution.png" alt="Distance-to-default distribution, full sample versus outliers excluded" style="max-width:100%;">
+    <p><em>DD distribution before and after excluding influential observations — now a tight, plausible range rather than a long tail driven by a handful of firms.</em></p>
   </div>
 
+  <div class="pd-block">
+    <h3>Full results</h3>
+    <style>
+      .pd-table { border-collapse: collapse; width: 100%; margin: 16px 0 28px; font-family: 'IBM Plex Mono', monospace; font-size: 0.9em; }
+      .pd-table caption { text-align: left; font-family: 'IBM Plex Serif', serif; font-style: italic; margin-bottom: 8px; caption-side: top; }
+      .pd-table th, .pd-table td { border: 1px solid currentColor; padding: 6px 12px; text-align: right; }
+      .pd-table th:first-child, .pd-table td:first-child { text-align: left; }
+      .pd-table thead th { font-weight: 600; }
+    </style>
+
+    <table class="pd-table">
+      <caption>Table 1 — Summary statistics (n = 132 firm-years)</caption>
+      <thead>
+        <tr><th>Variable</th><th>N</th><th>Mean</th><th>Std Dev</th><th>Min</th><th>Max</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Distance to Default</td><td>132</td><td>3.681</td><td>2.445</td><td>-2.245</td><td>11.475</td></tr>
+        <tr><td>Leverage Ratio</td><td>132</td><td>0.485</td><td>0.187</td><td>0.114</td><td>0.966</td></tr>
+        <tr><td>Profitability (ROA)</td><td>132</td><td>0.071</td><td>0.078</td><td>-0.194</td><td>0.455</td></tr>
+        <tr><td>Log(Total Assets)</td><td>132</td><td>31.611</td><td>0.948</td><td>28.726</td><td>33.860</td></tr>
+      </tbody>
+    </table>
+
+    <table class="pd-table">
+      <caption>Table 2 — Baseline regression: DD ~ leverage + profitability + log(assets) + year FE. Model A: full sample. Model B: influential observations excluded (Cook's distance &gt; 4/n). Firm-clustered standard errors. *** p&lt;0.01, ** p&lt;0.05, * p&lt;0.10</caption>
+      <thead>
+        <tr><th>Variable</th><th>Model A: coef</th><th>Model A: p</th><th>Model B: coef</th><th>Model B: p</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Leverage Ratio</td><td>-4.281</td><td>0.001***</td><td>-3.970</td><td>0.000***</td></tr>
+        <tr><td>Profitability (ROA)</td><td>13.039</td><td>0.000***</td><td>17.383</td><td>0.000***</td></tr>
+        <tr><td>Log(Total Assets)</td><td>-0.169</td><td>0.440</td><td>-0.125</td><td>0.483</td></tr>
+        <tr><td>N</td><td>132</td><td></td><td>123</td><td></td></tr>
+        <tr><td>R-squared</td><td>0.384</td><td></td><td>0.452</td><td></td></tr>
+      </tbody>
+    </table>
+
+    <table class="pd-table">
+      <caption>Table 3 — Out-of-sample comparison, 5-fold cross-validation grouped by firm</caption>
+      <thead>
+        <tr><th>Model</th><th>Out-of-sample RMSE</th><th>Out-of-sample R²</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>OLS (Model B spec)</td><td>1.733</td><td>0.400</td></tr>
+        <tr><td>LightGBM</td><td>1.707</td><td>0.419</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
   <div class="pd-nav-footer">
-    <a href="export-volatility.html">← Trade Policy Uncertainty & Export Volatility</a>
+    <a href="export-volatility.html">← Trade Policy Uncertainty &amp; Export Volatility</a>
     <a href="index.html#method">Back to homepage →</a>
   </div>
 </div>
